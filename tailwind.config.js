@@ -15,8 +15,7 @@ module.exports = {
         "secondary-500": "#FFC132",
       },
       backgroundImage: () => ({
-        "gradient-yellow-red":
-          "linear-gradient(90deg, #FF616A 0%, #FFC837 100%)",
+        "gradient-yellow-red": "linear-gradient(90deg, #FF616A 0%, #FFC837 100%)",
         "mobile-home": "url('./assets/HomePageGraphic.png')",
       }),
       fontFamily: {
