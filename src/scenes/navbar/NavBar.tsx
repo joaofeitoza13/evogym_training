@@ -4,7 +4,7 @@ import Logo from "@/assets/Logo.png";
 import Link from "./Link";
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import ActionButton from "../../../src/shared/ActionButton";
+import { ActionButton } from "@/shared";
 
 type Props = {
   isTopOfPage: boolean;
@@ -12,15 +12,21 @@ type Props = {
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-export const NavBar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
+export const NavBar = ({
+  isTopOfPage,
+  selectedPage,
+  setSelectedPage,
+}: Props) => {
   const flexBetween = "flex items-center justify-between";
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
-  const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false)
-  const navBarBackground = isTopOfPage ? "" : "bg-primary-100 drop-shadow"
+  const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
+  const navBarBackground = isTopOfPage ? "" : "bg-primary-100 drop-shadow";
 
   return (
     <nav>
-      <div className={`${navBarBackground} ${flexBetween} fixed top-0 z-30 w-full py-6`}>
+      <div
+        className={`${navBarBackground} ${flexBetween} fixed top-0 z-30 w-full py-6`}
+      >
         <div className={`${flexBetween} mx-auto w-5/6`}>
           <div className={`${flexBetween} w-full gap-16`}>
             <img src={Logo} alt="logo" />
