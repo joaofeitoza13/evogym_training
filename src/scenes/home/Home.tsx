@@ -42,11 +42,11 @@ export const Home = ({ setSelectedPage }: Props) => {
               </div>
             </div>
             <p className="mt-8 text-sm">
-              Unrivaled Gym. Unparalleled Training Fitness Classes.
+              Unrivaled Gym
               <br />
-              World Class Studios to get the Body Shapes That you Dream of...
+              Unparalleled training fitness classes
               <br />
-              Get Your Dream Body Now.
+              World Class studios to help you get the body you dream of...
               <br />
             </p>
           </motion.div>

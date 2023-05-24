@@ -34,7 +34,7 @@ export const Footer = ({ setSelectedPage }: Props) => {
         <div className="mt-8 basis-1/4 md:mt-0">
           <h4 className="font-bold">Contact Us</h4>
           <div className="px-2">
-            <p className="flex justify-start items-center gap-2 my-3"><UserIcon className="w-5 h-5" />(11)4135-9700</p>
+            <p className="flex justify-start items-center gap-2 my-3"><UserIcon className="w-5 h-5" />(xx) 342x-1x0x</p>
           </div>
         </div>
       </div>
