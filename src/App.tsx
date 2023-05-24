@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { NavBar, Home, Benefits } from "@/scenes"
-import { SelectedPage } from "@/shared/types";
+import { NavBar, Home, Benefits, ContactUs, Footer } from "@/scenes"
+import { SelectedPage } from "@/shared";
 import OurClasses from './scenes/ourClasses/OurClasses';
 
 function App() {
@@ -26,7 +26,8 @@ function App() {
       <Home setSelectedPage={setSelectedPage}/>
       <Benefits setSelectedPage={setSelectedPage}/>
       <OurClasses setSelectedPage={setSelectedPage}/>
-
+      <ContactUs setSelectedPage={setSelectedPage}/>
+      <Footer setSelectedPage={setSelectedPage} />
     </div>
   );
 }
