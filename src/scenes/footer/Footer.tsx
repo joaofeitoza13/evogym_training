@@ -1,12 +1,7 @@
 import { Logo } from "@/assets";
 import { UserIcon } from "@heroicons/react/24/outline";
-import { SelectedPage } from "../../shared";
 
-type Props = {
-  setSelectedPage: (value: SelectedPage) => void;
-};
-
-export const Footer = ({ setSelectedPage }: Props) => {
+export const Footer = () => {
   return (
     <footer className="bg-primary-100 py-1 md:py-12">
       <div className="justify-content mx-auto w-5/6 gap-16 md:flex">
