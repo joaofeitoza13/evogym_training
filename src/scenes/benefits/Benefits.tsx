@@ -5,10 +5,10 @@ import {
 } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import { Benefit } from "./Benefit";
-import { SelectedPage, HText, BenefitType, ActionButton } from "@/shared";
+import { ESelectedPage, HText, IBenefit, ActionButton } from "@/shared";
 import { BenefitsPageGraphic } from "@/assets";
 
-const benefits: Array<BenefitType> = [
+const benefits: Array<IBenefit> = [
   {
     icon: <HomeModernIcon className="h-6 w-6" />,
     title: "State of Art Facilities",
@@ -37,14 +37,14 @@ const container = {
 };
 
 type Props = {
-  setSelectedPage: (value: SelectedPage) => void;
+  setSelectedPage: (value: ESelectedPage) => void;
 };
 
 export const Benefits = ({ setSelectedPage }: Props) => {
   return (
     <section id="benefits" className="mx-auto min-h-full w-5/6 py-20">
       <motion.div
-        onViewportEnter={() => setSelectedPage(SelectedPage.Benefits)}
+        onViewportEnter={() => setSelectedPage(ESelectedPage.Benefits)}
       >
         <motion.div
           className="md:my-5 md:w-3/5"
@@ -71,7 +71,7 @@ export const Benefits = ({ setSelectedPage }: Props) => {
           viewport={{ once: true, amount: 0.5 }}
           variants={container}
         >
-          {benefits.map((benefit: BenefitType) => (
+          {benefits.map((benefit: IBenefit) => (
             <Benefit
               key={benefit.title}
               icon={benefit.icon}

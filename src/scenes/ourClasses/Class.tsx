@@ -1,6 +1,6 @@
-import { ClassType } from "@/shared";
+import { IClass } from "@/shared";
 
-const Class = ({ name, description, image }: ClassType) => {
+const Class = ({ name, description, image }: IClass) => {
   // const overlayStyles = `
   //   p-5 absolute z-30 flex h-[380px] w-[450px]
   //   flex-col items-center justify-center whitespace-normal

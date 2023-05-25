@@ -1,6 +1,6 @@
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { ActionButton } from "@/shared";
-import { SelectedPage } from "@/shared/types";
+import { ESelectedPage } from "@/shared/types";
 import {
   HomePageText,
   HomePageGraphic,
@@ -12,7 +12,7 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import { motion } from "framer-motion";
 
 type Props = {
-  setSelectedPage: (value: SelectedPage) => void;
+  setSelectedPage: (value: ESelectedPage) => void;
 };
 
 export const Home = ({ setSelectedPage }: Props) => {
@@ -22,7 +22,7 @@ export const Home = ({ setSelectedPage }: Props) => {
     <section id="home" className="gap-16 bg-gray-20 py-10 md:h-full md:pb-0">
       <motion.div
         className="mx-auto w-5/6 items-center justify-center md:flex md:h-5/6"
-        onViewportEnter={() => setSelectedPage(SelectedPage.Home)}
+        onViewportEnter={() => setSelectedPage(ESelectedPage.Home)}
       >
         <div className="z-10 mt-32 md:basis-3/5">
           <motion.div
@@ -66,8 +66,8 @@ export const Home = ({ setSelectedPage }: Props) => {
             </ActionButton>
             <AnchorLink
               className="text-sm font-bold text-primary-500 underline hover:text-secondary-500"
-              onClick={() => setSelectedPage(SelectedPage.ContactUs)}
-              href={`#${SelectedPage.ContactUs}`}
+              onClick={() => setSelectedPage(ESelectedPage.ContactUs)}
+              href={`#${ESelectedPage.ContactUs}`}
             >
               <p>Learn More</p>
             </AnchorLink>

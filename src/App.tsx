@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { NavBar, Home, Benefits, ContactUs, Footer } from "@/scenes"
-import { SelectedPage } from "@/shared";
+import { ESelectedPage } from "@/shared";
 import OurClasses from './scenes/ourClasses/OurClasses';
 
 function App() {
-  const [selectedPage ,setSelectedPage] = useState<SelectedPage>(SelectedPage.Home)
+  const [selectedPage ,setSelectedPage] = useState<ESelectedPage>(ESelectedPage.Home)
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true)
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY === 0) {
         setIsTopOfPage(true)
-        setSelectedPage(SelectedPage.Home)
+        setSelectedPage(ESelectedPage.Home)
       }
       if(window.scrollY !== 0) setIsTopOfPage(false)
     }

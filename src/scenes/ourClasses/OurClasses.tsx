@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { ClassType, HText, SelectedPage } from "@/shared";
+import { IClass, HText, ESelectedPage } from "@/shared";
 import { image1, image2, image3, image4, image5, image6 } from "@/assets";
 import Class from "./Class";
 
-const classes: Array<ClassType> = [
+const classes: Array<IClass> = [
   {
     name: "Weight Training Classes",
     description:
@@ -41,14 +41,14 @@ const classes: Array<ClassType> = [
 ];
 
 type Props = {
-  setSelectedPage: (value: SelectedPage) => void;
+  setSelectedPage: (value: ESelectedPage) => void;
 };
 
 const OurClasses = ({ setSelectedPage }: Props) => {
   return (
     <section id="ourclasses" className="w-full bg-primary-100 py-40">
       <motion.div
-        onViewportEnter={() => setSelectedPage(SelectedPage.OurClasses)}
+        onViewportEnter={() => setSelectedPage(ESelectedPage.OurClasses)}
       >
         <motion.div
           className="mx-auto w-5/6"
@@ -73,7 +73,7 @@ const OurClasses = ({ setSelectedPage }: Props) => {
         </motion.div>
         <div className="mt-10 h-[353px] w-full overflow-x-auto overflow-y-hidden">
           <ul className="w-[2800px] whitespace-nowrap">
-            {classes.map((item: ClassType, index) => (
+            {classes.map((item: IClass, index) => (
               <Class 
                 key={`${item.name}-${index}`}
                 name={item.name}
