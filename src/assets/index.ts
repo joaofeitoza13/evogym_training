@@ -17,6 +17,8 @@ import SponsorFortune from './SponsorFortune.png'
 import HomePageGraphic from './HomePageGraphic.png'
 import BenefitsPageGraphic from './BenefitsPageGraphic.png'
 import ContactUsPageGraphic from './ContactUsPageGraphic.png'
+import ContactUsPageGraphic2 from './ContactUsPageGraphic2.png'
+import PilatesScaled from './PilatesScaled.png'
 
 export {
   Logo,
@@ -31,6 +33,7 @@ export {
   Sparkles,
   EvolveText,
   HomePageText,
+  PilatesScaled,
   SponsorForbes,
   AbstractWaves,
   SponsorFortune,
@@ -38,4 +41,7 @@ export {
   HomePageGraphic,
   BenefitsPageGraphic,
   ContactUsPageGraphic,
+  ContactUsPageGraphic2,
 }
+
+export * from './gym'
