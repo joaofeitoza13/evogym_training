@@ -6,7 +6,7 @@ import {
 import { motion } from "framer-motion";
 import { Benefit } from "./Benefit";
 import { ESelectedPage, HText, IBenefit, ActionButton } from "@/shared";
-import { BenefitsPageGraphic } from "@/assets";
+import { Cossack } from "@/assets";
 
 const benefits: Array<IBenefit> = [
   {
@@ -82,12 +82,13 @@ export const Benefits = ({ setSelectedPage }: Props) => {
           ))}
         </motion.div>
         {/* graphic and description */}
-        <div className="mt-16 items-center justify-between gap-20 md:mt-28 md:flex">
+        <div className="mt-16 items-center justify-between gap-2 md:mt-28 md:flex">
           {/* graphic */}
           <img
-            className="mx-auto"
-            src={BenefitsPageGraphic}
+            className="mx-auto mb-5"
+            src={Cossack}
             alt="benefits-page-graphic"
+            width="650px"
           />
           {/* description */}
           <div>
@@ -106,7 +107,7 @@ export const Benefits = ({ setSelectedPage }: Props) => {
                 >
                   <HText>
                     MILLIONS OF HAPPY MEMBERS GETTING{" "}
-                    <span className="text-primary-500">FIT</span>
+                    <span className="text-secondary-400">FIT</span>
                   </HText>
                 </motion.div>
               </div>
