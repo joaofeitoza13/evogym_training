@@ -11,8 +11,13 @@ module.exports = {
         "primary-100": "#FFE1E0",
         "primary-300": "#FFA6A3",
         "primary-500": "#FF6B66",
-        "secondary-400": "#FFCD5B",
-        "secondary-500": "#FFC132",
+        "primary-700": "#F8342D",
+        "secondary-100": "#F6F9E8",
+        "secondary-400": "#F9F39B",
+        "secondary-500": "#555555",
+        "terciary-100": "#ADADAA",
+        "terciary-400": "#999999",
+        "terciary-700": "#363635"
       },
       backgroundImage: () => ({
         "gradient-yellow-red": "linear-gradient(90deg, #FF616A 0%, #FFC837 100%)",
@@ -23,7 +28,7 @@ module.exports = {
         montserrat: ["Montserrat", "sans-serif"],
       },
       content: {
-        evolveText: "url('./assets/EvolveText.png')",
+        evolveText: "url('./assets/gym/EvolveText2.png')",
         abstractWaves: "url('./assets/AbstractWaves.png')",
         sparkles: "url('./assets/Sparkles.png')",
         circles: "url('./assets/Circles.png')",

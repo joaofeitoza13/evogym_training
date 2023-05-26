@@ -21,7 +21,7 @@ function App() {
   }, [])
 
   return (
-    <div className="app bg-gray-20">
+    <div className="app bg-black">
       <NavBar isTopOfPage={isTopOfPage} selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
       <Home setSelectedPage={setSelectedPage}/>
       <Benefits setSelectedPage={setSelectedPage}/>

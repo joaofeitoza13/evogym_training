@@ -30,7 +30,7 @@ export const Benefit = ({
       <h4 className="font-bold">{title}</h4>
       <p className="my-3 px-10 md:px-1 text-center">{description}</p>
       <AnchorLink
-        className="text-sm font-bold text-primary-500 underline hover:text-secondary-500"
+        className="text-sm font-bold text-secondary-500 underline hover:text-terciary-100"
         onClick={() => setSelectedPage(ESelectedPage.ContactUs)}
         href={`#${ESelectedPage.ContactUs}`}
       >
