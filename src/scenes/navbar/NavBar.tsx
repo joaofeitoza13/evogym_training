@@ -41,7 +41,7 @@ export const NavBar = ({
         {!hidden && (
           <motion.div
             key="navbg"
-            className="fixed top-0 z-40 h-16 w-full bg-secondary-500 drop-shadow"
+            className="fixed top-0 z-40 h-16 w-full bg-terciary-700 drop-shadow"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -95,10 +95,10 @@ export const NavBar = ({
               </div>
             ) : (
               <button
-                className="rounded-full bg-secondary-500 p-2"
+                className="rounded-full bg-secondary-400 p-2"
                 onClick={() => setIsMenuToggled(!isMenuToggled)}
               >
-                <Bars3Icon className="h-6 w-6 text-white" />
+                <Bars3Icon className="h-6 w-6 text-terciary-700" />
               </button>
             )}
           </div>
@@ -107,7 +107,7 @@ export const NavBar = ({
       <AnimatePresence>
         {!isAboveMediumScreens && isMenuToggled && (
           <motion.div
-            className="fixed bottom-0 right-0 z-40 h-full w-[300px] bg-primary-100 drop-shadow-xl"
+            className="fixed bottom-0 right-0 z-40 h-full w-[300px] bg-secondary-400 drop-shadow-xl"
             initial="hidden"
             whileInView="visible"
             transition={{ duration: 0.2 }}
@@ -119,29 +119,33 @@ export const NavBar = ({
           >
             <div className="-mr-2 -mt-9 flex justify-end p-12">
               <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-                <XMarkIcon className="h-9 w-9 text-gray-400" />
+                <XMarkIcon className="h-9 w-9 text-terciary-700" />
               </button>
             </div>
             <div className="ml-[25%] flex flex-col gap-10 text-2xl">
               <Link
                 page="Home"
                 selectedPage={selectedPage}
+                isMenuToggled={isMenuToggled}
                 setSelectedPage={setSelectedPage}
               />
               <Link
                 page="Benefits"
                 selectedPage={selectedPage}
+                isMenuToggled={isMenuToggled}
                 setSelectedPage={setSelectedPage}
               />
               <Link
                 page="Our Classes"
                 selectedPage={selectedPage}
+                isMenuToggled={isMenuToggled}
                 setSelectedPage={setSelectedPage}
               />
               <Link
                 page="Contact Us"
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}
+                isMenuToggled={isMenuToggled}
               />
             </div>
           </motion.div>
