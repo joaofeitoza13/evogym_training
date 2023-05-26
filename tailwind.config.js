@@ -28,7 +28,7 @@ module.exports = {
         montserrat: ["Montserrat", "sans-serif"],
       },
       content: {
-        evolveText: "url('./assets/gym/EvolveText2.png')"
+        evolveText: "url('./assets/gym/EvolveText.png')"
       },
     },
     screens: {

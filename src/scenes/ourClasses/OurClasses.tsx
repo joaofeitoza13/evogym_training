@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { IClass, HText, ESelectedPage } from "@/shared";
-import { AbsWorkout, CrossTraining2, CrossTraining3, InstructorGym, Squat2, Treadmill, Yoga2, Yoga3, image1, image2, image3, image4, image5, image6 } from "@/assets";
+import { AbsWorkout, CrossTraining, InstructorGym, Squat, Treadmill, YogaClass } from "@/assets";
 import Class from "./Class";
 
 const classes: Array<IClass> = [
@@ -8,13 +8,13 @@ const classes: Array<IClass> = [
     name: "Weight Training Classes",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    image: Squat2,
+    image: Squat,
   },
   {
     name: "Yoga Classes",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    image: Yoga3,
+    image: YogaClass,
   },
   {
     name: "Ab Core Classes",
@@ -30,7 +30,7 @@ const classes: Array<IClass> = [
   },
   {
     name: "Crosstraining Classes",
-    image: CrossTraining3,
+    image: CrossTraining,
   },
   {
     name: "High-level Instructors",

@@ -5,7 +5,7 @@ import { ESelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { ActionButton } from "@/shared";
 import { motion, AnimatePresence } from "framer-motion";
-import { EvoGymLogo2 } from "@/assets";
+import { EvoGymLogo } from "@/assets";
 
 type Props = {
   isTopOfPage: boolean;
@@ -61,7 +61,7 @@ export const NavBar = ({
       >
         <div className={`${flexBetween} mx-auto w-5/6`}>
           <div className={`${flexBetween} w-full gap-16`}>
-            <img src={EvoGymLogo2} alt="evo-gym-logo-2" />
+            <img src={EvoGymLogo} alt="evo-gym-logo-2" />
             {isAboveMediumScreens ? (
               <div className={`${flexBetween} w-full`}>
                 <div className={`${flexBetween} gap-8 text-sm`}>

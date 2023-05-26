@@ -5,7 +5,7 @@ import {
 	SponsorRedBull,
 	SponsorForbes,
 	SponsorFortune,
-  EvoGym2,
+  EvoGym,
   Functional,
 } from '@/assets'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
@@ -38,7 +38,7 @@ export const Home = ({ setSelectedPage }: Props) => {
 						}}
 					>
 						<div className="relative">
-							<img src={EvoGym2} alt="home-page-text" />
+							<img src={EvoGym} alt="home-page-text" />
 							<div className="before:absolute before:-left-12 before:-top-20  before:z-[-1] md:before:content-evolveText"></div>
 						</div>
 						<p className="ml-2 mt-3 text-sm">

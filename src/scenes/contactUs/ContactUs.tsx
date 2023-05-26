@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { TFormData, HText, ESelectedPage, TSetSelectedPage } from '@/shared'
-import { ContactUsPageGraphic2, Yoga1 } from '@/assets'
+import { Sprinting, Yoga } from '@/assets'
 import {
 	nameRequiredError,
 	nameLongError,
@@ -164,7 +164,8 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 						<div className="w-full before:absolute before:-bottom-20 before:-right-20 before:z-[-1] md:before:content-evolveText">
 							<img
 								className="w-full rounded-xl -mt-24 ml-30"
-								src={Yoga1}
+								src={Yoga}
+								// src={Running}
 								alt="contact-us-page-graphic"
 							/>
 						</div>
