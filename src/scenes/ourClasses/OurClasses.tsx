@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { IClass, HText, ESelectedPage } from "@/shared";
-import { image1, image2, image3, image4, image5, image6 } from "@/assets";
+import { AbsWorkout, CrossTraining2, CrossTraining3, InstructorGym, Squat2, Treadmill, Yoga2, Yoga3, image1, image2, image3, image4, image5, image6 } from "@/assets";
 import Class from "./Class";
 
 const classes: Array<IClass> = [
@@ -8,35 +8,35 @@ const classes: Array<IClass> = [
     name: "Weight Training Classes",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    image: image1,
+    image: Squat2,
   },
   {
     name: "Yoga Classes",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    image: image2,
+    image: Yoga3,
   },
   {
     name: "Ab Core Classes",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    image: image3,
+    image: AbsWorkout,
   },
   {
-    name: "Adventure Classes",
+    name: "Cardio Sections",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    image: image4,
+    image: Treadmill,
   },
   {
-    name: "Fitness Classes",
-    image: image5,
+    name: "Crosstraining Classes",
+    image: CrossTraining3,
   },
   {
-    name: "Training Classes",
+    name: "High-level Instructors",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    image: image6,
+    image: InstructorGym,
   },
 ];
 
@@ -46,7 +46,7 @@ type Props = {
 
 const OurClasses = ({ setSelectedPage }: Props) => {
   return (
-    <section id="ourclasses" className="w-full bg-primary-100 py-40">
+    <section id="ourclasses" className="w-full bg-terciary-700 py-16">
       <motion.div
         onViewportEnter={() => setSelectedPage(ESelectedPage.OurClasses)}
       >

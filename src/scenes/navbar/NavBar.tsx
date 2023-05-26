@@ -41,7 +41,7 @@ export const NavBar = ({
         {!hidden && (
           <motion.div
             key="navbg"
-            className="fixed top-0 z-20 h-16 w-full bg-secondary-500 drop-shadow"
+            className="fixed top-0 z-40 h-16 w-full bg-secondary-500 drop-shadow"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -50,7 +50,7 @@ export const NavBar = ({
         )}
       </AnimatePresence>
       <motion.div
-        className={`${flexBetween} fixed top-0 z-30 w-full py-3`}
+        className={`${flexBetween} fixed top-0 z-40 w-full py-3`}
         initial="hidden"
         whileInView="visible"
         transition={{ duration: 0.1 }}

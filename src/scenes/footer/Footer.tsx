@@ -1,4 +1,4 @@
-import { Logo } from '@/assets'
+import { EvoGymLogo2, Logo } from '@/assets'
 import { UserIcon } from '@heroicons/react/24/outline'
 
 export const Footer = () => {
@@ -6,7 +6,7 @@ export const Footer = () => {
 		<footer className="bg-secondary-500 py-1 md:py-12">
 			<div className="justify-content mx-auto w-5/6 gap-16 md:flex">
 				<div className="mt-8 basis-1/2 md:mt-0">
-					<img src={Logo} alt="logo" />
+					<img src={EvoGymLogo2} alt="logo" width="25%"/>
 					<div className="px-2">
 						<p className="my-3">
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo assumenda harum

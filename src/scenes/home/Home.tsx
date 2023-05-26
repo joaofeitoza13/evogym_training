@@ -10,6 +10,7 @@ import {
 } from '@/assets'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import { motion } from 'framer-motion'
+import { Adidas, Nike, Puma, Reebok, UnderArmour } from '@/assets/gym/logos'
 
 type Props = {
 	setSelectedPage: (value: ESelectedPage) => void
@@ -75,12 +76,14 @@ export const Home = ({ setSelectedPage }: Props) => {
 				</div>
 			</motion.div>
 			{isAboveMediumScreens && (
-				<div className="h-[150px] w-full bg-primary-100 py-10">
+				<div className="h-[150px] w-full bg-secondary-400 pt-2 pb-10">
 					<div className="mx-auto w-5/6">
-						<div className="flex w-3/5 items-center justify-between gap-8">
-							<img src={SponsorRedBull} alt="sponsor-redbull" />
-							<img src={SponsorForbes} alt="sponsor-forbes" />
-							<img src={SponsorFortune} alt="sponsor-fortune" />
+						<div className="flex items-center justify-between gap-8">
+							<img className='-mr-8' src={Nike} alt="sponsor-redbull" width="180px"/>
+							<img className='-mt-5' src={Puma} alt="sponsor-redbull" width="150px"/>
+							<img src={UnderArmour} alt="sponsor-redbull" width="150px"/>
+							<img src={Reebok} alt="sponsor-redbull" width="150px"/>
+							<img src={Adidas} alt="sponsor-redbull" width="125px"/>
 						</div>
 					</div>
 				</div>

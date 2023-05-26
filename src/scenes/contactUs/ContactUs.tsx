@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { TFormData, HText, ESelectedPage, TSetSelectedPage } from '@/shared'
-import { ContactUsPageGraphic2 } from '@/assets'
+import { ContactUsPageGraphic2, Yoga1 } from '@/assets'
 import {
 	nameRequiredError,
 	nameLongError,
@@ -16,7 +16,7 @@ import {
 } from '../../shared/error-messages'
 import { ErrorMessage } from '@/shared/ErrorMessage'
 
-const inputStyles = 'mt-2 w-full rounded-lg bg-primary-300 px-5 py-3 placeholder-white'
+const inputStyles = 'mt-2 w-full rounded-lg bg-secondary-400 px-5 py-3 placeholder-terciary-500'
 
 const initialFormData = {
 	name: 'Your Name',
@@ -96,7 +96,7 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 					}}
 				>
 					<HText>
-						<span className="text-primary-500">JOIN NOW!</span>
+						<span className="text-secondary-400">JOIN NOW!</span>
 					</HText>
 					<p className="my-5 text-justify">
 						Congue adipiscing risus commodo placerat. Tellus et in feugiat nisl sapien vel rhoncus.
@@ -104,7 +104,7 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 						cursus sagittis.
 					</p>
 				</motion.div>
-				<div className="mt-10 justify-between gap-8 md:flex">
+				<div className="mt-10 justify-between gap-8 md:flex text-terciary-700">
 					<motion.div
 						className="mt-10 basis-3/5 md:mt-0"
 						initial="hidden"
@@ -161,10 +161,10 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 							visible: { opacity: 1, y: 0 },
 						}}
 					>
-						<div className="w-full before:absolute before:-bottom-20 before:-right-10 before:z-[-1] md:before:content-evolveText">
+						<div className="w-full before:absolute before:-bottom-20 before:-right-20 before:z-[-1] md:before:content-evolveText">
 							<img
-								className="w-full rounded-xl"
-								src={ContactUsPageGraphic2}
+								className="w-full rounded-xl -mt-24 ml-30"
+								src={Yoga1}
 								alt="contact-us-page-graphic"
 							/>
 						</div>
