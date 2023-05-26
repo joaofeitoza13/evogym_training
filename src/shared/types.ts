@@ -26,3 +26,7 @@ export interface IClass {
   description?: string
   image: string
 }
+
+export type TChildren = {
+  children: React.ReactNode
+}

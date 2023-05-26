@@ -1,182 +1,177 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { useForm } from "react-hook-form";
-import { HText, SelectedPage } from "@/shared";
-import { EvolveText, ContactUsPageGraphic } from "@/assets";
+import * as zod from 'zod'
+import { FormEvent, useState } from 'react'
+import { motion } from 'framer-motion'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { TFormData, HText, ESelectedPage, TSetSelectedPage } from '@/shared'
+import { ContactUsPageGraphic2 } from '@/assets'
+import {
+	nameRequiredError,
+	nameLongError,
+	emailInvalidError,
+	emailRequiredError,
+	emailLongError,
+	messageRequiredError,
+	messageLongError,
+} from '../../shared/error-messages'
+import { ErrorMessage } from '@/shared/ErrorMessage'
 
-type Props = {
-  setSelectedPage: (value: SelectedPage) => void;
-};
-
-type FormDataType = {
-  name: string;
-  email: string;
-  message: string;
-};
+const inputStyles = 'mt-2 w-full rounded-lg bg-primary-300 px-5 py-3 placeholder-white'
 
 const initialFormData = {
-  name: "joao",
-  email: "joao@email.com",
-  message: "testando o form",
-};
+	name: 'Your Name',
+	email: 'your-email@email.com',
+	message: 'Please, write your message.',
+}
 
-export const ContactUs = ({ setSelectedPage }: Props) => {
-  const [formData, setFormData] = useState<FormDataType>(initialFormData);
+const formSchema = zod.object({
+	name: zod.string().min(1, { message: nameRequiredError }).max(100, { message: nameLongError }),
+	email: zod
+		.string()
+		.min(5, { message: emailRequiredError })
+		.max(100, { message: emailLongError })
+		.email({ message: emailInvalidError }),
+	message: zod
+		.string()
+		.min(1, { message: messageRequiredError })
+		.max(2000, { message: messageLongError }),
+})
 
-  const inputStyles =
-    "mt-2 w-full rounded-lg bg-primary-300 px-5 py-3 placeholder-white";
+const sendFormData = (formData: TFormData): void => {
+	fetch('https://formsubmit.co/ajax/795d405474dbfbf51a6b245a8fe12315', {
+		headers: {
+			'Content-Type': 'application/json',
+			Accept: 'application/json, text-plain, */*',
+		},
+		method: 'POST',
+		body: JSON.stringify(formData),
+	})
+}
 
-  const {
-    register,
-    trigger,
-    formState: { errors, isSubmitting },
-  } = useForm();
+export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
+	const [formData, setFormData] = useState<TFormData>(initialFormData)
 
-  const sendFormData = (formData: FormData): void => {
-    console.log(formData);
-    fetch("https://formsubmit.co/ajax/795d405474dbfbf51a6b245a8fe12315", {
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json, text-plain, */*",
-      },
-      method: "POST",
-      body: JSON.stringify(Object.fromEntries(formData)),
-    })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  };
+	const {
+		register,
+		trigger,
+		formState: { errors, isSubmitting },
+		getValues,
+	} = useForm<TFormData>({
+		resolver: zodResolver(formSchema),
+	})
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    const isValid = await trigger();
-    if (!isValid) {
-      e.preventDefault();
-      return;
-    }
-    const formData = new FormData(e.target);
+	const submitButton = () => {
+		const formData = getValues(['name', 'email', 'message'])
+		setFormData({
+			name: formData[0],
+			email: formData[1],
+			message: formData[2],
+		})
+	}
 
-    sendFormData(formData);
-    setFormData(initialFormData);
-  };
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		const isValid = await trigger()
+		if (!isValid) {
+			return
+		}
+		sendFormData(formData)
+		setFormData(initialFormData)
+	}
 
-  return (
-    <section id="contactus" className="mx-auto w-5/6 pb-32 pt-24">
-      <motion.div
-        onViewportEnter={() => setSelectedPage(SelectedPage.ContactUs)}
-      >
-        <motion.div
-          className="md:w-3/5"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          variants={{
-            hidden: { opacity: 0, x: -50 },
-            visible: { opacity: 1, x: 0 },
-          }}
-        >
-          <HText>
-            <span className="text-primary-500">JOIN NOW!</span>
-          </HText>
-          <p className="my-5 text-justify">
-            Congue adipiscing risus commodo placerat. Tellus et in feugiat nisl
-            sapien vel rhoncus. Placerat at in enim pellentesque. Nulla
-            adipiscing leo egestas nisi elit risus sit. Nunc cursus sagittis.
-          </p>
-        </motion.div>
-        <div className="mt-10 justify-between gap-8 md:flex">
-          <motion.div
-            className="mt-10 basis-3/5 md:mt-0"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.5 }}
-            variants={{
-              hidden: { opacity: 0, y: 50 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <form target="_blank" onSubmit={handleSubmit} method="POST">
-              <input
-                className={inputStyles}
-                type="text"
-                placeholder="NAME"
-                {...register("name", {
-                  required: true,
-                  maxLength: 100,
-                })}
-              />
-              {errors.name && (
-                <p className="mt-1 text-primary-500">
-                  {errors.name.type === "required" && "This field is required."}
-                  {errors.name.type === "maxLength" &&
-                    "Max length is 100 characters."}
-                </p>
-              )}
-              <input
-                className={inputStyles}
-                type="email"
-                placeholder="EMAIL"
-                {...register("email", {
-                  required: true,
-                  pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                })}
-              />
-              {errors.email && (
-                <p className="mt-1 text-primary-500">
-                  {errors.email.type === "required" &&
-                    "This field is required."}
-                  {errors.email.type === "pattern" &&
-                    "Invalid email pattern provided."}
-                </p>
-              )}
-              <textarea
-                className={inputStyles}
-                rows={4}
-                cols={50}
-                placeholder="MESSAGE"
-                {...register("message", {
-                  required: true,
-                  maxLength: 2000,
-                })}
-              />
-              {errors.message && (
-                <p className="mt-1 text-primary-500">
-                  {errors.message.type === "required" &&
-                    "This field is required."}
-                  {errors.message.type === "maxLength" &&
-                    "Max length is 2000 characters."}
-                </p>
-              )}
-              <button
-                className="mt-5 rounded-lg bg-secondary-500 px-20 py-3 transition duration-500 hover:text-white"
-                type="submit"
-              >
-                {isSubmitting ? 'SUBMITTING...' : 'SUBMIT'}
-              </button>
-            </form>
-          </motion.div>
-          <motion.div
-            className="relative z-10 mt-16 basis-2/5 md:mt-2"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            variants={{
-              hidden: { opacity: 0, y: 50 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <div className="w-full before:absolute before:-bottom-20 before:-right-10 before:z-[-1] md:before:content-evolveText">
-              <img
-                className="w-full"
-                src={ContactUsPageGraphic}
-                alt="contact-us-page-graphic"
-              />
-            </div>
-          </motion.div>
-        </div>
-      </motion.div>
-    </section>
-  );
-};
+	console.log(isSubmitting)
+
+	return (
+		<section id="contactus" className="mx-auto w-5/6 pb-32 pt-24">
+			<motion.div onViewportEnter={() => setSelectedPage(ESelectedPage.ContactUs)}>
+				<motion.div
+					className="md:w-3/5"
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, amount: 0.5 }}
+					transition={{ delay: 0.2, duration: 0.5 }}
+					variants={{
+						hidden: { opacity: 0, x: -50 },
+						visible: { opacity: 1, x: 0 },
+					}}
+				>
+					<HText>
+						<span className="text-primary-500">JOIN NOW!</span>
+					</HText>
+					<p className="my-5 text-justify">
+						Congue adipiscing risus commodo placerat. Tellus et in feugiat nisl sapien vel rhoncus.
+						Placerat at in enim pellentesque. Nulla adipiscing leo egestas nisi elit risus sit. Nunc
+						cursus sagittis.
+					</p>
+				</motion.div>
+				<div className="mt-10 justify-between gap-8 md:flex">
+					<motion.div
+						className="mt-10 basis-3/5 md:mt-0"
+						initial="hidden"
+						whileInView="visible"
+            viewport={{ once: true }}
+						transition={{ duration: 0.5 }}
+						variants={{
+							hidden: { opacity: 0, y: 50 },
+							visible: { opacity: 1, y: 0 },
+						}}
+					>
+						<form target="_blank" onSubmit={handleSubmit} method="POST">
+							<input className={inputStyles} type="text" placeholder="NAME" {...register('name')} />
+							{errors.name && <ErrorMessage>{errors.name?.message}</ErrorMessage>}
+							<input
+								className={inputStyles}
+								type="email"
+								placeholder="EMAIL"
+								{...register('email', {
+									required: true,
+									pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+								})}
+							/>
+							{errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+							<textarea
+								className={inputStyles}
+								rows={4}
+								cols={50}
+								placeholder="MESSAGE"
+								{...register('message', {
+									required: true,
+									maxLength: 2000,
+								})}
+							/>
+							{errors.message && <ErrorMessage>{errors.message.message}</ErrorMessage>}
+							<button
+								className="mt-5 rounded-lg bg-secondary-500 px-20 py-3 transition duration-500 hover:text-white"
+								disabled={isSubmitting}
+								type="submit"
+								onClick={submitButton}
+							>
+								{isSubmitting ? 'SUBMITTING...' : 'SUBMIT'}
+							</button>
+						</form>
+					</motion.div>
+					<motion.div
+						className="relative z-10 mt-12 basis-2/5 md:mt-2"
+						initial="hidden"
+						whileInView="visible"
+            viewport={{ once: true }}
+						transition={{ delay: 0.2, duration: 0.5 }}
+						variants={{
+							hidden: { opacity: 0, y: 50 },
+							visible: { opacity: 1, y: 0 },
+						}}
+					>
+						<div className="w-full before:absolute before:-bottom-20 before:-right-10 before:z-[-1] md:before:content-evolveText">
+							<img
+								className="w-full rounded-xl"
+								src={ContactUsPageGraphic2}
+								alt="contact-us-page-graphic"
+							/>
+						</div>
+					</motion.div>
+				</div>
+			</motion.div>
+		</section>
+	)
+}
+
