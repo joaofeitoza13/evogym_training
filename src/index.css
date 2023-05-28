@@ -7,8 +7,24 @@
 html,
 body,
 #root {
-  height: 100%;
-  width: 100%;
-  font-family: "DM Sans", sans-serif;
-  @apply text-white;
+	height: 100%;
+	width: 100%;
+	font-family: 'DM Sans', sans-serif;
+	@apply text-white;
+}
+
+.carousel {
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+	display: none;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 100,
+  'GRAD' -25,
+  'opsz' 20
 }

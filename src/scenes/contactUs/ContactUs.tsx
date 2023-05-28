@@ -79,8 +79,6 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 		setFormData(initialFormData)
 	}
 
-	console.log(isSubmitting)
-
 	return (
 		<section id="contactus" className="mx-auto w-5/6 pb-32 pt-24">
 			<motion.div onViewportEnter={() => setSelectedPage(ESelectedPage.ContactUs)}>
@@ -141,7 +139,7 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 							/>
 							{errors.message && <ErrorMessage>{errors.message.message}</ErrorMessage>}
 							<button
-								className="mt-5 rounded-lg bg-secondary-500 px-20 py-3 transition duration-500 hover:text-white"
+								className="mt-5 rounded-lg bg-secondary-400 px-16 py-3 transition duration-500 text-black tracking-widest text-lg hover:bg-terciary-100"
 								disabled={isSubmitting}
 								type="submit"
 								onClick={submitButton}
@@ -163,9 +161,9 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 					>
 						<div className="w-full before:absolute before:-bottom-20 before:-right-20 before:z-[-1] md:before:content-evolveText">
 							<img
-								className="w-full rounded-xl -mt-24 ml-30"
+								className="w-full rounded-xl -mt-6 ml-30"
 								src={Yoga}
-								// src={Running}
+								// src={Sprinting}
 								alt="contact-us-page-graphic"
 							/>
 						</div>

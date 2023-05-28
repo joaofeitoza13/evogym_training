@@ -82,10 +82,10 @@ export const Benefits = ({ setSelectedPage }: Props) => {
           ))}
         </motion.div>
         {/* graphic and description */}
-        <div className="mt-16 items-center justify-between gap-2 md:mt-28 md:flex">
+        <div className="mt-14 items-center justify-between gap-2 md:mt-28 md:flex">
           {/* graphic */}
           <img
-            className="mx-auto mb-5"
+            className="pt-7 mb-5"
             src={Cossack}
             alt="benefits-page-graphic"
             width="650px"
@@ -94,7 +94,7 @@ export const Benefits = ({ setSelectedPage }: Props) => {
           <div>
             {/* title */}
             <div className="relative">
-              <div className="before:absolute before:-left-20 before:-top-20 before:z-[1] before:content-abstractWaves">
+              <div className="before:absolute before:-left-20 before:-top-20 before:z-[1]">
                 <motion.div
                   initial="hidden"
                   whileInView="visible"

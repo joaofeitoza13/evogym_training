@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { IClass, HText, ESelectedPage } from "@/shared";
 import { AbsWorkout, CrossTraining, InstructorGym, Squat, Treadmill, YogaClass } from "@/assets";
-import Class from "./Class";
+import { Carousel } from "@/shared/Carousel";
 
 const classes: Array<IClass> = [
   {
@@ -71,18 +71,7 @@ const OurClasses = ({ setSelectedPage }: Props) => {
             </p>
           </div>
         </motion.div>
-        <div className="mt-10 h-[305px] w-full overflow-x-auto overflow-y-hidden">
-          <ul className="w-[2800px] whitespace-nowrap">
-            {classes.map((item: IClass, index) => (
-              <Class 
-                key={`${item.name}-${index}`}
-                name={item.name}
-                description={item.description}
-                image={item.image}
-              />
-            ))}
-          </ul>
-        </div>
+        <Carousel classes={classes} />
       </motion.div>
     </section>
   );
