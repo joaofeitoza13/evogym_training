@@ -1,6 +1,6 @@
-import { useState, useRef, RefObject, useEffect, SyntheticEvent } from 'react'
-import { IClass } from './types'
-import Class from '@/scenes/ourClasses/Class'
+import { useState, useRef, useEffect } from 'react'
+import { IClass } from '@/shared/types'
+import {Class} from '@/scenes/ourClasses'
 import { Indicators } from './Indicators'
 // import { Indicators } from './Indicators'
 

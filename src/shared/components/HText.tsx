@@ -1,4 +1,4 @@
-import { TChildren } from "./types"
+import { TChildren } from "@/shared/types"
 
 export const HText = ({ children }: TChildren) => {
   return (

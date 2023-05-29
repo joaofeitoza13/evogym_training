@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import { IBenefit, ESelectedPage } from "@/shared";
+import { IBenefit, ESelectedPage } from "@/shared/types";
 
 interface Props extends IBenefit {
   setSelectedPage: (value: ESelectedPage) => void;

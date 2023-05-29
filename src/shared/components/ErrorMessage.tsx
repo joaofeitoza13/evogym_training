@@ -1,4 +1,4 @@
-import { TChildren } from "./types";
+import { TChildren } from "@/shared/types"
 
 const errorStyles = "mt-1 text-primary-700 text-sm/4";
 

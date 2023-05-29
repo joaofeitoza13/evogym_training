@@ -8,9 +8,7 @@ type Props = {
 	setSelectedPage: (value: ESelectedPage) => void
 }
 
-
-
-const Link = ({ page, selectedPage, setSelectedPage, isMenuToggled }: Props) => {
+export const Link = ({ page, selectedPage, setSelectedPage, isMenuToggled }: Props) => {
 	const lowerCasePage = page.toLowerCase().replace(/ /g, '') as ESelectedPage
 	const isSeletedPage = selectedPage === lowerCasePage ? 'font-extrabold text-[1rem] text-secondary-400' : 'text-terciary-400'
 	const isSelectedPageInMenu = isMenuToggled ? 'font-extrabold text-[2rem] text-terciary-700' : 'text-terciary-400'
@@ -27,5 +25,3 @@ const Link = ({ page, selectedPage, setSelectedPage, isMenuToggled }: Props) => 
 		</div>
 	)
 }
-
-export default Link

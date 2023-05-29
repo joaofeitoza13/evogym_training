@@ -1,11 +1,11 @@
-import { IClass } from "@/shared";
+import { IClass } from "@/shared/types";
 
 type Props = IClass & {
   itemIndex: number
   activeIndex: number
 }
 
-const Class = ({ name, description, image, itemIndex, activeIndex }: Props) => {
+export const Class = ({ name, description, image, itemIndex, activeIndex }: Props) => {
 
   const activeItem = 'active mx-25'
   const inactiveItem = 'opacity-20'
@@ -14,7 +14,7 @@ const Class = ({ name, description, image, itemIndex, activeIndex }: Props) => {
 
   return (
     <section className={`relative my-5 inline-block w-[450px] flex-none ${isActiveItem()} hover:opacity-100`}>
-      <div className="rounded-md absolute z-30 flex h-[100%] w-[450px] flex-col items-center justify-center whitespace-normal bg-secondary-400 p-5 text-center text-black opacity-0 transition duration-500 hover:opacity-90">
+      <div className="rounded-md absolute z-10 flex h-[100%] w-[450px] flex-col items-center justify-center whitespace-normal bg-secondary-400 p-5 text-center text-black opacity-0 transition duration-500 hover:opacity-90">
         <p className="text-2xl">{name}</p>
         <p className="mt-5">{description}</p>
       </div>
@@ -22,5 +22,3 @@ const Class = ({ name, description, image, itemIndex, activeIndex }: Props) => {
     </section>
   );
 };
-
-export default Class;

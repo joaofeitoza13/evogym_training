@@ -1,5 +1,6 @@
 export * from './navbar'
 export * from './home'
 export * from './benefits'
+export * from './ourClasses'
 export * from './contactUs'
 export * from './footer'

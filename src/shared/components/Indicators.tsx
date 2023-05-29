@@ -1,5 +1,5 @@
 import { RefObject } from "react"
-import { IClass } from "./types"
+import { IClass } from "@/shared/types"
 
 type Props = {
   activeIndex: number

@@ -1,16 +1,10 @@
-import useMediaQuery from '@/hooks/useMediaQuery'
-import { ActionButton } from '@/shared'
-import { ESelectedPage } from '@/shared/types'
-import {
-	SponsorRedBull,
-	SponsorForbes,
-	SponsorFortune,
-  EvoGym,
-  Functional,
-} from '@/assets'
-import AnchorLink from 'react-anchor-link-smooth-scroll'
 import { motion } from 'framer-motion'
-import { Adidas, Nike, Puma, Reebok, UnderArmour } from '@/assets/gym/logos'
+import AnchorLink from 'react-anchor-link-smooth-scroll'
+import { EvoGym, Functional } from '@/assets'
+import { ESelectedPage } from '@/shared/types'
+import useMediaQuery from '@/hooks/useMediaQuery'
+import { ActionButton } from '@/shared/components'
+import { Adidas, Nike, Puma, Reebok, UnderArmour } from '@/assets/gym/brands'
 
 type Props = {
 	setSelectedPage: (value: ESelectedPage) => void
@@ -76,14 +70,14 @@ export const Home = ({ setSelectedPage }: Props) => {
 				</div>
 			</motion.div>
 			{isAboveMediumScreens && (
-				<div className="h-[150px] w-full bg-secondary-400 pt-2 pb-10">
+				<div className="h-[150px] w-full bg-secondary-400 pb-10 pt-2">
 					<div className="mx-auto w-5/6">
 						<div className="flex items-center justify-between gap-8">
-							<img className='-mr-8' src={Nike} alt="sponsor-redbull" width="180px"/>
-							<img className='-mt-5' src={Puma} alt="sponsor-redbull" width="150px"/>
-							<img src={UnderArmour} alt="sponsor-redbull" width="150px"/>
-							<img src={Reebok} alt="sponsor-redbull" width="150px"/>
-							<img src={Adidas} alt="sponsor-redbull" width="125px"/>
+							<img className="-mr-8" src={Nike} alt="sponsor-redbull" width="180px" />
+							<img className="-mt-5" src={Puma} alt="sponsor-redbull" width="150px" />
+							<img src={UnderArmour} alt="sponsor-redbull" width="150px" />
+							<img src={Reebok} alt="sponsor-redbull" width="150px" />
+							<img src={Adidas} alt="sponsor-redbull" width="125px" />
 						</div>
 					</div>
 				</div>

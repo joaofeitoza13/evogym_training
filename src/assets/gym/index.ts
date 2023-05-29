@@ -5,6 +5,7 @@ import Sprinting from './Sprinting.png'
 import EvoGym from './EvoGym.png'
 import EvolveText from './EvolveText.png'
 import EvoGymLogo from './EvoGymLogo.png'
+import EvoGymFooter from './EvoGymFooter.png'
 
 export {
 	Cossack,
@@ -14,7 +15,6 @@ export {
 	EvoGym,
 	EvolveText,
 	EvoGymLogo,
+	EvoGymFooter
 }
-
-export * from './carousel'
 

@@ -1,5 +1,5 @@
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import { ESelectedPage, TChildren } from "./types";
+import { ESelectedPage, TChildren } from "@/shared/types";
 
 type Props = TChildren & {
   setSelectedPage: (value: ESelectedPage) => void;
