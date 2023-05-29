@@ -76,10 +76,10 @@ export const Benefits = ({ setSelectedPage }: Props) => {
 					))}
 				</motion.div>
 				{/* graphic and description */}
-				<div className="mt-14 items-center justify-between gap-2 md:mt-28 md:flex">
+				<div className="mt-14 items-center justify-between gap-2 md:mt-28 md:flex md:-ml-24">
 					{/* graphic */}
 					<img
-						className="mb-5 pl-10 pt-7"
+						className="mx-auto mb-5 pt-7"
 						src={Cossack}
 						alt="benefits-page-graphic"
 						width="650px"

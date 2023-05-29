@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Toast, HText, Modal, ErrorMessage } from '@/shared/components'
-import { Sprinting, Yoga } from '@/assets'
+import { Yoga } from '@/assets'
 import { TFormData, TSetSelectedPage, ESelectedPage } from '@/shared/types'
 import * as Errors from '@/shared/helpers'
 
