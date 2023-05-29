@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { NavBar, Home, Benefits, ContactUs, Footer } from "@/scenes"
-import { ESelectedPage } from "@/shared";
-import OurClasses from './scenes/ourClasses/OurClasses';
+import { NavBar, Home, Benefits, ContactUs, Footer, OurClasses } from "@/scenes"
+import { ESelectedPage } from "@/shared/types";
 
 function App() {
   const [selectedPage ,setSelectedPage] = useState<ESelectedPage>(ESelectedPage.Home)

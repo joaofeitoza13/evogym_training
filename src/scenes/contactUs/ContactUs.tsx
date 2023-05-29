@@ -1,86 +1,106 @@
 import * as zod from 'zod'
-import { FormEvent, useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { TFormData, HText, ESelectedPage, TSetSelectedPage } from '@/shared'
+import { Toast, HText, Modal, ErrorMessage } from '@/shared/components'
 import { Sprinting, Yoga } from '@/assets'
-import {
-	nameRequiredError,
-	nameLongError,
-	emailInvalidError,
-	emailRequiredError,
-	emailLongError,
-	messageRequiredError,
-	messageLongError,
-} from '../../shared/error-messages'
-import { ErrorMessage } from '@/shared/ErrorMessage'
+import { TFormData, TSetSelectedPage, ESelectedPage } from '@/shared/types'
+import * as Errors from '@/shared/helpers'
 
 const inputStyles = 'mt-2 w-full rounded-lg bg-secondary-400 px-5 py-3 placeholder-terciary-500'
 
-const initialFormData = {
-	name: 'Your Name',
-	email: 'your-email@email.com',
-	message: 'Please, write your message.',
-}
-
 const formSchema = zod.object({
-	name: zod.string().min(1, { message: nameRequiredError }).max(100, { message: nameLongError }),
+	name: zod
+		.string()
+		.min(1, { message: Errors.nameRequiredError })
+		.max(100, { message: Errors.nameLongError }),
 	email: zod
 		.string()
-		.min(5, { message: emailRequiredError })
-		.max(100, { message: emailLongError })
-		.email({ message: emailInvalidError }),
+		.min(5, { message: Errors.emailRequiredError })
+		.max(100, { message: Errors.emailLongError })
+		.email({ message: Errors.emailInvalidError }),
 	message: zod
 		.string()
-		.min(1, { message: messageRequiredError })
-		.max(2000, { message: messageLongError }),
+		.min(1, { message: Errors.messageRequiredError })
+		.max(2000, { message: Errors.messageLongError }),
 })
 
-const sendFormData = (formData: TFormData): void => {
-	fetch('https://formsubmit.co/ajax/795d405474dbfbf51a6b245a8fe12315', {
-		headers: {
-			'Content-Type': 'application/json',
-			Accept: 'application/json, text-plain, */*',
-		},
-		method: 'POST',
-		body: JSON.stringify(formData),
-	})
-}
-
 export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
-	const [formData, setFormData] = useState<TFormData>(initialFormData)
+	const [showModal, setShowModal] = useState<boolean>(false)
+	const [submitStatus, setSubmitStatus] = useState<boolean>(false)
+
+	const initialFormData: TFormData = {
+		name: '',
+		email: '',
+		message: '',
+	}
 
 	const {
-		register,
+		reset,
 		trigger,
-		formState: { errors, isSubmitting },
+		register,
 		getValues,
+		handleSubmit,
+		formState: { errors, isSubmitting },
 	} = useForm<TFormData>({
 		resolver: zodResolver(formSchema),
+		defaultValues: initialFormData,
 	})
 
-	const submitButton = () => {
-		const formData = getValues(['name', 'email', 'message'])
-		setFormData({
-			name: formData[0],
-			email: formData[1],
-			message: formData[2],
+	const resetForm = () => {
+		reset((formValues) => ({
+			...formValues,
+			...initialFormData,
+		}))
+	}
+
+	const showToast = (status: boolean) => {
+		console.log(status)
+		setShowModal(true)
+		setSubmitStatus(status)
+		setTimeout(() => {
+			setShowModal(false)
+		}, 5000)
+	}
+
+	const sendFormData = async (formData: TFormData): Promise<void> => {
+		fetch('', {
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json, text-plain, */*',
+			},
+			method: 'POST',
+			body: JSON.stringify(formData),
+		}).then((response) => {
+			if (response.ok) {
+				showToast(true)
+			} else {
+				showToast(false)
+			}
 		})
 	}
 
-	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
+	const onSubmit = async () => {
 		const isValid = await trigger()
 		if (!isValid) {
 			return
 		}
-		sendFormData(formData)
-		setFormData(initialFormData)
+		const values = getValues(['name', 'email', 'message'])
+		const formValues = {
+			name: values[0],
+			email: values[1],
+			message: values[2],
+		}
+		await sendFormData(formValues)
+		resetForm()
 	}
 
 	return (
 		<section id="contactus" className="mx-auto w-5/6 pb-32 pt-24">
+			<Modal>
+				<Toast submitStatus={submitStatus} showToast={showModal} />
+			</Modal>
 			<motion.div onViewportEnter={() => setSelectedPage(ESelectedPage.ContactUs)}>
 				<motion.div
 					className="md:w-3/5"
@@ -102,25 +122,25 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 						cursus sagittis.
 					</p>
 				</motion.div>
-				<div className="mt-10 justify-between gap-8 md:flex text-terciary-700">
+				<div className="mt-10 justify-between gap-8 text-terciary-700 md:flex">
 					<motion.div
 						className="mt-10 basis-3/5 md:mt-0"
 						initial="hidden"
 						whileInView="visible"
-            viewport={{ once: true }}
+						viewport={{ once: true }}
 						transition={{ duration: 0.5 }}
 						variants={{
 							hidden: { opacity: 0, y: 50 },
 							visible: { opacity: 1, y: 0 },
 						}}
 					>
-						<form target="_blank" onSubmit={handleSubmit} method="POST">
-							<input className={inputStyles} type="text" placeholder="NAME" {...register('name')} />
+						<form target="_blank" onSubmit={handleSubmit(onSubmit)} method="POST">
+							<input className={inputStyles} type="text" placeholder="Name" {...register('name')} />
 							{errors.name && <ErrorMessage>{errors.name?.message}</ErrorMessage>}
 							<input
 								className={inputStyles}
 								type="email"
-								placeholder="EMAIL"
+								placeholder="Email"
 								{...register('email', {
 									required: true,
 									pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -131,7 +151,7 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 								className={inputStyles}
 								rows={4}
 								cols={50}
-								placeholder="MESSAGE"
+								placeholder="Message"
 								{...register('message', {
 									required: true,
 									maxLength: 2000,
@@ -139,10 +159,9 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 							/>
 							{errors.message && <ErrorMessage>{errors.message.message}</ErrorMessage>}
 							<button
-								className="mt-5 rounded-lg bg-secondary-400 px-16 py-3 transition duration-500 text-black tracking-widest text-lg hover:bg-terciary-100"
+								className="mt-5 rounded-lg bg-secondary-400 px-16 py-3 text-lg tracking-widest text-black transition duration-500"
 								disabled={isSubmitting}
 								type="submit"
-								onClick={submitButton}
 							>
 								{isSubmitting ? 'SUBMITTING...' : 'SUBMIT'}
 							</button>
@@ -152,7 +171,7 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 						className="relative z-10 mt-12 basis-2/5 md:mt-2"
 						initial="hidden"
 						whileInView="visible"
-            viewport={{ once: true }}
+						viewport={{ once: true }}
 						transition={{ delay: 0.2, duration: 0.5 }}
 						variants={{
 							hidden: { opacity: 0, y: 50 },
@@ -161,7 +180,7 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 					>
 						<div className="w-full before:absolute before:-bottom-20 before:-right-20 before:z-[-1] md:before:content-evolveText">
 							<img
-								className="w-full rounded-xl -mt-6 ml-30"
+								className="ml-30 -mt-6 w-full rounded-xl hover:opacity-50"
 								src={Yoga}
 								// src={Sprinting}
 								alt="contact-us-page-graphic"
@@ -173,4 +192,3 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 		</section>
 	)
 }
-
