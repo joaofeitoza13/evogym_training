@@ -13,6 +13,7 @@ body,
 	@apply text-white;
 }
 
+/* Select and remove scrollbar of the carousel in Chrome and Firefox */
 .carousel {
   scrollbar-width: none;
 }
@@ -27,4 +28,26 @@ body,
   'wght' 100,
   'GRAD' -25,
   'opsz' 20
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input ~ .placeholder {
+  transition: 0.1s 600s;
+}
+
+input:focus ~ .placeholder {
+  transform: scale(.75) translate(-.9rem, -1.325rem);
+  transition:  0.1s ease;
+}
+
+.input ~ .message-placeholder {
+  transition: 0.1s 600s;
+}
+
+.input:focus ~ .message-placeholder {
+  transform: scale(.75) translate(-.8rem, -2.4rem);
+  transition:  0.1s ease;
 }

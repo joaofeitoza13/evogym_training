@@ -26,13 +26,6 @@ const benefits: Array<IBenefit> = [
 	},
 ]
 
-const container = {
-	hidden: {},
-	visible: {
-		transition: { staggerChildren: 0.2 },
-	},
-}
-
 type Props = {
 	setSelectedPage: (value: ESelectedPage) => void
 }
@@ -63,30 +56,30 @@ export const Benefits = ({ setSelectedPage }: Props) => {
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: true, amount: 0.5 }}
-					variants={container}
+					variants={{
+						visible: {
+							transition: { staggerChildren: 0.2 },
+						},
+					}}
 				>
-					{benefits.map((benefit: IBenefit) => (
+					{benefits.map(({ title, icon, description }: IBenefit) => (
 						<Benefit
-							key={benefit.title}
-							icon={benefit.icon}
-							title={benefit.title}
-							description={benefit.description}
+							key={title}
+							icon={icon}
+							title={title}
+							description={description}
 							setSelectedPage={setSelectedPage}
 						/>
 					))}
 				</motion.div>
-				{/* graphic and description */}
-				<div className="mt-14 items-center justify-between gap-2 md:mt-28 md:flex md:-ml-24">
-					{/* graphic */}
+				<div className="mt-14 items-center justify-between gap-2 md:-ml-24 md:mt-28 md:flex">
 					<img
 						className="mx-auto mb-5 pt-7"
 						src={Cossack}
 						alt="benefits-page-graphic"
 						width="650px"
 					/>
-					{/* description */}
 					<div>
-						{/* title */}
 						<div className="relative">
 							<div className="before:absolute before:-left-20 before:-top-20 before:z-[1]">
 								<motion.div
@@ -106,7 +99,6 @@ export const Benefits = ({ setSelectedPage }: Props) => {
 								</motion.div>
 							</div>
 						</div>
-						{/* description */}
 						<motion.div
 							initial="hidden"
 							whileInView="visible"
@@ -130,7 +122,6 @@ export const Benefits = ({ setSelectedPage }: Props) => {
 								facilisis metus nibh. Rhoncus sit enim mattis odio in risus nunc.
 							</p>
 						</motion.div>
-						{/* button */}
 						<div className="relative mt-16">
 							<div className="before:absolute before:-bottom-20 before:right-40 before:z-[1]">
 								<ActionButton setSelectedPage={setSelectedPage}>Join Now</ActionButton>

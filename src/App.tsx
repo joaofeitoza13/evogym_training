@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { NavBar, Home, Benefits, ContactUs, Footer, OurClasses } from "@/scenes"
+import { NavBar, Home, Benefits, ContactUs, Footer, OurClasses } from "@/pages"
 import { ESelectedPage } from "@/shared/types";
 
 function App() {

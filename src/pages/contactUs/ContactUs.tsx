@@ -3,12 +3,13 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Toast, HText, Modal, ErrorMessage } from '@/shared/components'
 import { Yoga } from '@/assets'
-import { TFormData, TSetSelectedPage, ESelectedPage } from '@/shared/types'
 import * as Errors from '@/shared/helpers'
+import { Toast, HText, Modal, ErrorMessage } from '@/shared/components'
+import { TFormData, TSetSelectedPage, ESelectedPage } from '@/shared/types'
 
-const inputStyles = 'mt-2 w-full rounded-lg bg-secondary-400 px-5 py-3 placeholder-terciary-500'
+const inputStyles =
+	'input mt-2 w-full rounded-lg bg-secondary-400 px-5 py-4 placeholder-terciary-500 z-10'
 
 const formSchema = zod.object({
 	name: zod
@@ -42,7 +43,7 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 		register,
 		getValues,
 		handleSubmit,
-		formState: { errors, isSubmitting },
+		formState: { errors },
 	} = useForm<TFormData>({
 		resolver: zodResolver(formSchema),
 		defaultValues: initialFormData,
@@ -61,11 +62,11 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 		setSubmitStatus(status)
 		setTimeout(() => {
 			setShowModal(false)
-		}, 5000)
+		}, 3000)
 	}
 
 	const sendFormData = async (formData: TFormData): Promise<void> => {
-		fetch('', {
+		fetch('https://formsubmit.co/ajax/795d405474dbfbf51a6b245a8fe12315', {
 			headers: {
 				'Content-Type': 'application/json',
 				Accept: 'application/json, text-plain, */*',
@@ -117,9 +118,9 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 						<span className="text-secondary-400">JOIN NOW!</span>
 					</HText>
 					<p className="my-5 text-justify">
-						Congue adipiscing risus commodo placerat. Tellus et in feugiat nisl sapien vel rhoncus.
-						Placerat at in enim pellentesque. Nulla adipiscing leo egestas nisi elit risus sit. Nunc
-						cursus sagittis.
+						Congue adipiscing risus commodo placerat. Tellus et in feugiat nisl sapien vel
+						rhoncus. Placerat at in enim pellentesque. Nulla adipiscing leo egestas nisi elit
+						risus sit. Nunc cursus sagittis.
 					</p>
 				</motion.div>
 				<div className="mt-10 justify-between gap-8 text-terciary-700 md:flex">
@@ -135,35 +136,47 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 						}}
 					>
 						<form target="_blank" onSubmit={handleSubmit(onSubmit)} method="POST">
-							<input className={inputStyles} type="text" placeholder="Name" {...register('name')} />
-							{errors.name && <ErrorMessage>{errors.name?.message}</ErrorMessage>}
-							<input
-								className={inputStyles}
-								type="email"
-								placeholder="Email"
-								{...register('email', {
-									required: true,
-									pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-								})}
-							/>
-							{errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
-							<textarea
-								className={inputStyles}
-								rows={4}
-								cols={50}
-								placeholder="Message"
-								{...register('message', {
-									required: true,
-									maxLength: 2000,
-								})}
-							/>
-							{errors.message && <ErrorMessage>{errors.message.message}</ErrorMessage>}
+							<div className="input">
+								<input className={inputStyles} type="text" {...register('name')}/>
+								<div className="placeholder relative -mt-10 mb-5 w-0 pl-5 text-terciary-400">
+									Name
+								</div>
+							</div>
+							{errors.message?.message && <ErrorMessage error={errors.message.message} />}
+							<div className="input">
+								<input
+									className={inputStyles}
+									type="email"
+									{...register('email', {
+										required: true,
+										pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+									})}
+								/>
+								<div className="placeholder relative -mt-10 mb-5 w-0 pl-5 text-terciary-400">
+									Email
+								</div>
+							</div>
+							{errors.message?.message && <ErrorMessage error={errors.message.message} />}
+							<div className="input">
+								<textarea
+									className={`${inputStyles}`}
+									rows={4}
+									cols={50}
+									{...register('message', {
+										required: true,
+										maxLength: 2000,
+									})}
+								/>
+								<div className="message-placeholder relative w-0 -mt-28 pl-5 pb-[5.5rem] text-terciary-400">
+									Message
+								</div>
+							</div>
+							{errors.message?.message && <ErrorMessage error={errors.message.message} />}
 							<button
-								className="mt-5 rounded-lg bg-secondary-400 px-16 py-3 text-lg tracking-widest text-black transition duration-500"
-								disabled={isSubmitting}
+								className="mt-5 rounded-lg bg-secondary-400 px-16 py-3 text-lg tracking-widest text-black transition duration-500 active:translate-y-1 active:bg-terciary-400"
 								type="submit"
 							>
-								{isSubmitting ? 'SUBMITTING...' : 'SUBMIT'}
+								Submit
 							</button>
 						</form>
 					</motion.div>

@@ -7,6 +7,6 @@
   "bracketSpacing": true,
   "bracketSameLine": false,
   "proseWrap": "always",
-  "printWidth": 100,
+  "printWidth": 95,
   "endOfLine": "crlf"
 }

@@ -1,12 +1,14 @@
 import { useState, useRef, useEffect } from 'react'
 import { IClass } from '@/shared/types'
-import {Class} from '@/scenes/ourClasses'
+import { Class } from '@/pages/ourClasses'
 import { Indicators } from './Indicators'
 // import { Indicators } from './Indicators'
 
 type Props = {
 	classes: IClass[]
 }
+
+type KeyUpHandler = (e: KeyboardEvent) => void
 
 export const Carousel = ({ classes }: Props) => {
 	const [activeIndex, setActiveIndex] = useState(1)
@@ -36,8 +38,14 @@ export const Carousel = ({ classes }: Props) => {
 		}
 	}
 
+	const mountKeyUpListener = (handler: KeyUpHandler) =>
+		document.addEventListener('keyup', handler)
+
+	const unmountKeyUpListener = (handler: KeyUpHandler) =>
+		document.removeEventListener('keyup', handler)
+
 	useEffect(() => {
-		const handleKeyDown = (e: KeyboardEvent) => {
+		const handleKeyUp = (e: KeyboardEvent) => {
 			e.preventDefault()
 			if (e.ctrlKey && e.key === 'ArrowLeft') {
 				prevItem()
@@ -45,16 +53,16 @@ export const Carousel = ({ classes }: Props) => {
 				nextItem()
 			}
 		}
-		document.addEventListener('keyup', handleKeyDown)
+		mountKeyUpListener(handleKeyUp)
 		return () => {
-			document.removeEventListener('keyup', handleKeyDown)
+			unmountKeyUpListener(handleKeyUp)
 		}
 	}, [activeIndex])
 
 	return (
 		<>
 			<div className="flex items-center justify-center">
-				<button className="p-10" onClick={() => prevItem()}>
+				<button className="p-10" onClick={prevItem}>
 					<span className="material-symbols-outlined">arrow_back_ios</span>
 				</button>
 				<div className="carousel flex gap-8 overflow-x-auto scroll-smooth" ref={carousel}>
@@ -69,7 +77,7 @@ export const Carousel = ({ classes }: Props) => {
 						/>
 					))}
 				</div>
-				<button className="p-10" onClick={() => nextItem()}>
+				<button className="p-10" onClick={nextItem}>
 					<span className="material-symbols-outlined">arrow_forward_ios</span>
 				</button>
 			</div>
