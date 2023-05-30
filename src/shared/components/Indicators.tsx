@@ -16,14 +16,20 @@ export const Indicators = ({ activeIndex, children, carousel, updateIndex }: Pro
 		}
 	}
 
-	const activeIndicator = (index: number) => index === activeIndex ? 'text-secondary-400' : 'text-terciary-400'
+	const activeIndicator = (index: number) =>
+		index === activeIndex ? 'text-secondary-400' : 'text-primary-400'
 
 	return (
-		<div id="indicators" className="flex justify-center">
+		<div
+			id="indicators"
+			className="flex justify-center"
+		>
 			{children?.map((item, index) => (
 				<span
 					key={index}
-					className={`material-symbols-outlined flex w-7 justify-center ${activeIndicator(index)}`}
+					className={`material-symbols-outlined flex w-7 justify-center ${activeIndicator(
+						index
+					)}`}
 					onClick={() => handleClick(index)}
 				>
 					circle

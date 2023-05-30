@@ -61,11 +61,20 @@ export const NavBar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) =>
 			>
 				<div className={`${flexBetween} mx-auto w-5/6`}>
 					<div className={`${flexBetween} w-full gap-16`}>
-						<img src={EvoGymLogo} alt="evo-gym-logo-2" onClick={moveToTopOfPage} />
+						<img
+							className="hover:cursor-pointer"
+							src={EvoGymLogo}
+							alt="evo-gym-logo-2"
+							onClick={moveToTopOfPage}
+						/>
 						{isAboveMediumScreens ? (
 							<div className={`${flexBetween} w-full`}>
 								<div className={`${flexBetween} gap-8 text-sm`}>
-									<Link page="Home" selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
+									<Link
+										page="Home"
+										selectedPage={selectedPage}
+										setSelectedPage={setSelectedPage}
+									/>
 									<Link
 										page="Benefits"
 										selectedPage={selectedPage}
@@ -84,15 +93,21 @@ export const NavBar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) =>
 								</div>
 								<div className={`${flexBetween} gap-8 text-sm`}>
 									<p>Sign In</p>
-									<ActionButton setSelectedPage={setSelectedPage}>Become a Member</ActionButton>
+									<ActionButton setSelectedPage={setSelectedPage}>
+										Become a Member
+									</ActionButton>
 								</div>
 							</div>
 						) : (
 							<button
-								className="rounded-full bg-secondary-400 p-2"
+								className="-mr-5 rounded-full bg-secondary-400 p-2"
 								onClick={() => setIsMenuToggled(!isMenuToggled)}
 							>
-								<Bars3Icon className="h-6 w-6 text-terciary-700" />
+								{!isMenuToggled ? (
+									<Bars3Icon className="h-6 w-6 text-terciary-700" />
+								) : (
+									<XMarkIcon className="h-6 w-6 text-terciary-700" />
+								)}
 							</button>
 						)}
 					</div>
@@ -102,7 +117,7 @@ export const NavBar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) =>
 				<motion.div
 					id="modal"
 					className="fixed top-20 z-30 -mt-4"
-					initial={{  y: '-4rem' }}
+					initial={{ y: '-4rem' }}
 					animate={{ y: 0 }}
 					exit={{ y: '-4rem' }}
 					transition={{ duration: 0.5 }}
@@ -111,7 +126,7 @@ export const NavBar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) =>
 			<AnimatePresence>
 				{!isAboveMediumScreens && isMenuToggled && (
 					<motion.div
-						className="fixed bottom-0 right-0 z-40 h-full w-[300px] bg-secondary-400 drop-shadow-xl"
+						className="fixed bottom-0 right-0 z-40 h-full w-[300px] bg-sec drop-shadow-xl"
 						initial="hidden"
 						whileInView="visible"
 						transition={{ duration: 0.2 }}
@@ -121,12 +136,7 @@ export const NavBar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) =>
 						}}
 						exit={{ x: 300 }}
 					>
-						<div className="-mr-2 -mt-9 flex justify-end p-12">
-							<button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-								<XMarkIcon className="h-9 w-9 text-terciary-700" />
-							</button>
-						</div>
-						<div className="ml-[25%] flex flex-col gap-10 text-2xl">
+						<div className="ml-[25%] flex flex-col gap-10 pt-[25%] text-2xl">
 							<Link
 								page="Home"
 								selectedPage={selectedPage}
@@ -158,5 +168,3 @@ export const NavBar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) =>
 		</nav>
 	)
 }
-
-

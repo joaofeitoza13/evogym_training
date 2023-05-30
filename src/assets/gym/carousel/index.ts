@@ -6,12 +6,4 @@ import AbsWorkout from './AbsWorkout.png'
 import CrossTraining from './CrossTraining.png'
 import InstructorGym from './InstructorGym.png'
 
-export {
-  YogaClass,
-  Squat,
-  Deadlift,
-  Treadmill,
-  AbsWorkout,
-  InstructorGym,
-  CrossTraining
-}
+export { YogaClass, Squat, Deadlift, Treadmill, AbsWorkout, InstructorGym, CrossTraining }

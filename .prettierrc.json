@@ -8,5 +8,6 @@
   "bracketSameLine": false,
   "proseWrap": "always",
   "printWidth": 95,
-  "endOfLine": "crlf"
+  "endOfLine": "crlf",
+  "singleAttributePerLine": true
 }

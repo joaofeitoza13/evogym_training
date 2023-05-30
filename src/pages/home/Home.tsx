@@ -1,20 +1,19 @@
 import { motion } from 'framer-motion'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import { EvoGym, Functional } from '@/assets'
-import { ESelectedPage } from '@/shared/types'
+import { ESelectedPage, TSetSelectedPage } from '@/shared/types'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import { ActionButton } from '@/shared/components'
 import { Adidas, Nike, Puma, Reebok, UnderArmour } from '@/assets/gym/brands'
 
-type Props = {
-	setSelectedPage: (value: ESelectedPage) => void
-}
-
-export const Home = ({ setSelectedPage }: Props) => {
+export const Home = ({ setSelectedPage }: TSetSelectedPage) => {
 	const isAboveMediumScreens = useMediaQuery('(min-width: 1060px)')
 
 	return (
-		<section id="home" className="gap-10 bg-black py-10 md:h-full md:pb-0">
+		<section
+			id="home"
+			className="gap-10 bg-black py-10 md:h-full md:pb-0"
+		>
 			<motion.div
 				className="mx-auto mt-10 w-5/6 items-center justify-center md:flex md:h-5/6"
 				onViewportEnter={() => setSelectedPage(ESelectedPage.Home)}
@@ -22,7 +21,7 @@ export const Home = ({ setSelectedPage }: Props) => {
 				<div className="z-10 mt-16 md:basis-3/5">
 					<motion.div
 						className="md:-mt-32"
-						initial="hidden"
+						// initial="hidden"
 						whileInView="visible"
 						viewport={{ once: true, amount: 0.5 }}
 						transition={{ duration: 0.5 }}
@@ -32,15 +31,16 @@ export const Home = ({ setSelectedPage }: Props) => {
 						}}
 					>
 						<div className="relative">
-							<img src={EvoGym} alt="home-page-text" />
+							<img
+								src={EvoGym}
+								alt="home-page-text"
+							/>
 							<div className="before:absolute before:-left-12 before:-top-20  before:z-[-1] md:before:content-evolveText"></div>
 						</div>
-						<p className="ml-2 mt-3 text-sm">
+						<p className="ml-1 mt-3 text-sm">
 							Unrivaled Gym
 							<br />
-							Unparalleled training fitness classes
-							<br />
-							World Class studios to help you get the body you dream of...
+							Unlock Your True Potential
 							<br />
 						</p>
 					</motion.div>
@@ -57,7 +57,7 @@ export const Home = ({ setSelectedPage }: Props) => {
 					>
 						<ActionButton setSelectedPage={setSelectedPage}>Join Now</ActionButton>
 						<AnchorLink
-							className="text-sm font-bold text-secondary-500 underline hover:text-terciary-100"
+							className="text-sm font-bold text-primary-500 underline hover:text-terciary-100"
 							onClick={() => setSelectedPage(ESelectedPage.ContactUs)}
 							href={`#${ESelectedPage.ContactUs}`}
 						>
@@ -66,18 +66,43 @@ export const Home = ({ setSelectedPage }: Props) => {
 					</motion.div>
 				</div>
 				<div className="flex basis-3/5 justify-center md:z-10 md:ml-40 md:mt-16 md:justify-items-end">
-					<img src={Functional} alt="home-page-graphic" />
+					<img
+						src={Functional}
+						alt="home-page-graphic"
+					/>
 				</div>
 			</motion.div>
 			{isAboveMediumScreens && (
 				<div className="h-[150px] w-full bg-secondary-400 pb-10 pt-2">
 					<div className="mx-auto w-5/6">
 						<div className="flex items-center justify-between gap-8">
-							<img className="-mr-8" src={Nike} alt="sponsor-redbull" width="180px" />
-							<img className="-mt-5" src={Puma} alt="sponsor-redbull" width="150px" />
-							<img src={UnderArmour} alt="sponsor-redbull" width="150px" />
-							<img src={Reebok} alt="sponsor-redbull" width="150px" />
-							<img src={Adidas} alt="sponsor-redbull" width="125px" />
+							<img
+								className="-mr-8"
+								src={Nike}
+								alt="sponsor-redbull"
+								width="180px"
+							/>
+							<img
+								className="-mt-5"
+								src={Puma}
+								alt="sponsor-redbull"
+								width="150px"
+							/>
+							<img
+								src={UnderArmour}
+								alt="sponsor-redbull"
+								width="150px"
+							/>
+							<img
+								src={Reebok}
+								alt="sponsor-redbull"
+								width="150px"
+							/>
+							<img
+								src={Adidas}
+								alt="sponsor-redbull"
+								width="125px"
+							/>
 						</div>
 					</div>
 				</div>
@@ -85,4 +110,3 @@ export const Home = ({ setSelectedPage }: Props) => {
 		</section>
 	)
 }
-

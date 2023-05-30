@@ -27,5 +27,5 @@ export const Modal = ({ children }: Props) => {
 	if (elRef.current) {
 		return createPortal(<div>{children}</div>, elRef.current)
 	}
-  return (<div> Erro </div>)
+	return <div> Erro </div>
 }

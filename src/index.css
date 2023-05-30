@@ -34,20 +34,20 @@ body,
   outline: none;
 }
 
-.input ~ .placeholder {
+.input ~ .input-floating-placeholder {
   transition: 0.1s 600s;
 }
 
-input:focus ~ .placeholder {
+.input ~ .msg-floating-placeholder {
+  transition: 0.1s 600s;
+}
+
+input:focus ~ .input-floating-placeholder {
   transform: scale(.75) translate(-.9rem, -1.325rem);
   transition:  0.1s ease;
 }
 
-.input ~ .message-placeholder {
-  transition: 0.1s 600s;
-}
-
-.input:focus ~ .message-placeholder {
+.input:focus ~ .msg-floating-placeholder {
   transform: scale(.75) translate(-.8rem, -2.4rem);
   transition:  0.1s ease;
 }

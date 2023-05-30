@@ -7,14 +7,4 @@ import EvolveText from './EvolveText.png'
 import EvoGymLogo from './EvoGymLogo.png'
 import EvoGymFooter from './EvoGymFooter.png'
 
-export {
-	Cossack,
-	Functional,
-	Sprinting,
-	Yoga,
-	EvoGym,
-	EvolveText,
-	EvoGymLogo,
-	EvoGymFooter
-}
-
+export { Cossack, Functional, Sprinting, Yoga, EvoGym, EvolveText, EvoGymLogo, EvoGymFooter }

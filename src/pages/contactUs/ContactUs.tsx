@@ -11,6 +11,19 @@ import { TFormData, TSetSelectedPage, ESelectedPage } from '@/shared/types'
 const inputStyles =
 	'input mt-2 w-full rounded-lg bg-secondary-400 px-5 py-4 placeholder-terciary-500 z-10'
 
+const floatingPlaceholder =
+	'input-floating-placeholder -mt-11 mb-5 w-0 pl-5 text-primary-500'
+
+const msgFloatingPlaceholder =
+	'msg-floating-placeholder w-0 -mt-28 mb-5 pb-[5.5rem] pl-5 text-primary-500'
+
+const transition = { delay: 0.2, duration: 0.5 }
+
+const motionVariant = {
+	hidden: { opacity: 0, y: 50 },
+	visible: { opacity: 1, y: 0 },
+}
+
 const formSchema = zod.object({
 	name: zod
 		.string()
@@ -43,21 +56,24 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 		register,
 		getValues,
 		handleSubmit,
-		formState: { errors },
+		formState: {
+			errors: { message },
+		},
 	} = useForm<TFormData>({
 		resolver: zodResolver(formSchema),
 		defaultValues: initialFormData,
 	})
 
-	const resetForm = () => {
-		reset((formValues) => ({
-			...formValues,
-			...initialFormData,
-		}))
+	const clearForm = () => {
+		setTimeout(() => {
+			reset((formValues) => ({
+				...formValues,
+				...initialFormData,
+			}))
+		}, 500)
 	}
 
-	const showToast = (status: boolean) => {
-		console.log(status)
+	const handleToast = (status: boolean) => {
 		setShowModal(true)
 		setSubmitStatus(status)
 		setTimeout(() => {
@@ -75,9 +91,9 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 			body: JSON.stringify(formData),
 		}).then((response) => {
 			if (response.ok) {
-				showToast(true)
+				handleToast(true)
 			} else {
-				showToast(false)
+				handleToast(false)
 			}
 		})
 	}
@@ -94,13 +110,19 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 			message: values[2],
 		}
 		await sendFormData(formValues)
-		resetForm()
+		clearForm()
 	}
 
 	return (
-		<section id="contactus" className="mx-auto w-5/6 pb-32 pt-24">
+		<section
+			id="contactus"
+			className="mx-auto w-5/6 pb-32 pt-24"
+		>
 			<Modal>
-				<Toast submitStatus={submitStatus} showToast={showModal} />
+				<Toast
+					submitStatus={submitStatus}
+					handleToast={showModal}
+				/>
 			</Modal>
 			<motion.div onViewportEnter={() => setSelectedPage(ESelectedPage.ContactUs)}>
 				<motion.div
@@ -108,11 +130,8 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: true, amount: 0.5 }}
-					transition={{ delay: 0.2, duration: 0.5 }}
-					variants={{
-						hidden: { opacity: 0, x: -50 },
-						visible: { opacity: 1, x: 0 },
-					}}
+					transition={transition}
+					variants={motionVariant}
 				>
 					<HText>
 						<span className="text-secondary-400">JOIN NOW!</span>
@@ -130,50 +149,42 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 						whileInView="visible"
 						viewport={{ once: true }}
 						transition={{ duration: 0.5 }}
-						variants={{
-							hidden: { opacity: 0, y: 50 },
-							visible: { opacity: 1, y: 0 },
-						}}
+						variants={motionVariant}
 					>
-						<form target="_blank" onSubmit={handleSubmit(onSubmit)} method="POST">
+						<form
+							onSubmit={handleSubmit(onSubmit)}
+							method="POST"
+						>
 							<div className="input">
-								<input className={inputStyles} type="text" {...register('name')}/>
-								<div className="placeholder relative -mt-10 mb-5 w-0 pl-5 text-terciary-400">
-									Name
-								</div>
+								<input
+									className={inputStyles}
+									type="text"
+									{...register('name')}
+								/>
+								<div className={floatingPlaceholder}>Name</div>
 							</div>
-							{errors.message?.message && <ErrorMessage error={errors.message.message} />}
+							<ErrorMessage error={message?.message || ''} />
 							<div className="input">
 								<input
 									className={inputStyles}
 									type="email"
-									{...register('email', {
-										required: true,
-										pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-									})}
+									{...register('email')}
 								/>
-								<div className="placeholder relative -mt-10 mb-5 w-0 pl-5 text-terciary-400">
-									Email
-								</div>
+								<div className={floatingPlaceholder}>Email</div>
 							</div>
-							{errors.message?.message && <ErrorMessage error={errors.message.message} />}
+							<ErrorMessage error={message?.message || ''} />
 							<div className="input">
 								<textarea
-									className={`${inputStyles}`}
+									className={inputStyles}
 									rows={4}
 									cols={50}
-									{...register('message', {
-										required: true,
-										maxLength: 2000,
-									})}
+									{...register('message')}
 								/>
-								<div className="message-placeholder relative w-0 -mt-28 pl-5 pb-[5.5rem] text-terciary-400">
-									Message
-								</div>
+								<div className={msgFloatingPlaceholder}>Message</div>
 							</div>
-							{errors.message?.message && <ErrorMessage error={errors.message.message} />}
+							<ErrorMessage error={message?.message || ''} />
 							<button
-								className="mt-5 rounded-lg bg-secondary-400 px-16 py-3 text-lg tracking-widest text-black transition duration-500 active:translate-y-1 active:bg-terciary-400"
+								className="mt-5 rounded-lg bg-secondary-400 px-16 py-3 text-lg tracking-widest text-black transition duration-500 active:translate-y-1 active:bg-primary-400"
 								type="submit"
 							>
 								Submit
@@ -185,11 +196,8 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 						initial="hidden"
 						whileInView="visible"
 						viewport={{ once: true }}
-						transition={{ delay: 0.2, duration: 0.5 }}
-						variants={{
-							hidden: { opacity: 0, y: 50 },
-							visible: { opacity: 1, y: 0 },
-						}}
+						transition={transition}
+						variants={motionVariant}
 					>
 						<div className="w-full before:absolute before:-bottom-20 before:-right-20 before:z-[-1] md:before:content-evolveText">
 							<img
