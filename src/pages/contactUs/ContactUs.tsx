@@ -9,7 +9,7 @@ import { Toast, HText, Modal, ErrorMessage } from '@/shared/components'
 import { TFormData, TSetSelectedPage, ESelectedPage } from '@/shared/types'
 
 const inputStyles =
-	'input mt-2 w-full rounded-lg bg-secondary-400 px-5 py-4 placeholder-terciary-500 z-10'
+	'input mt-2 w-full rounded-lg bg-secondary-400 px-5 py-4 placeholder-primary-500 z-10'
 
 const floatingPlaceholder =
 	'input-floating-placeholder -mt-11 mb-5 w-0 pl-5 text-primary-500'
@@ -142,7 +142,7 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 						risus sit. Nunc cursus sagittis.
 					</p>
 				</motion.div>
-				<div className="mt-10 justify-between gap-8 text-terciary-700 md:flex">
+				<div className="mt-10 justify-between gap-8 text-primary-700 md:flex">
 					<motion.div
 						className="mt-10 basis-3/5 md:mt-0"
 						initial="hidden"

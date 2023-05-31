@@ -41,7 +41,7 @@ export const NavBar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) =>
 				{!hidden && (
 					<motion.div
 						key="navbg"
-						className="fixed top-0 z-40 h-16 w-full bg-terciary-700 drop-shadow"
+						className="fixed top-0 z-40 h-16 w-full bg-primary-700 drop-shadow"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
@@ -104,9 +104,9 @@ export const NavBar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) =>
 								onClick={() => setIsMenuToggled(!isMenuToggled)}
 							>
 								{!isMenuToggled ? (
-									<Bars3Icon className="h-6 w-6 text-terciary-700" />
+									<Bars3Icon className="h-6 w-6 text-primary-700" />
 								) : (
-									<XMarkIcon className="h-6 w-6 text-terciary-700" />
+									<XMarkIcon className="h-6 w-6 text-primary-700" />
 								)}
 							</button>
 						)}
@@ -126,7 +126,7 @@ export const NavBar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) =>
 			<AnimatePresence>
 				{!isAboveMediumScreens && isMenuToggled && (
 					<motion.div
-						className="fixed bottom-0 right-0 z-40 h-full w-[300px] bg-sec drop-shadow-xl"
+						className="fixed bottom-0 right-0 z-40 h-full w-[300px] bg-secondary-400 drop-shadow-xl"
 						initial="hidden"
 						whileInView="visible"
 						transition={{ duration: 0.2 }}

@@ -57,7 +57,7 @@ export const Home = ({ setSelectedPage }: TSetSelectedPage) => {
 					>
 						<ActionButton setSelectedPage={setSelectedPage}>Join Now</ActionButton>
 						<AnchorLink
-							className="text-sm font-bold text-primary-500 underline hover:text-terciary-100"
+							className="text-sm font-bold text-primary-500 underline hover:text-primary-100"
 							onClick={() => setSelectedPage(ESelectedPage.ContactUs)}
 							href={`#${ESelectedPage.ContactUs}`}
 						>

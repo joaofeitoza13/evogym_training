@@ -7,7 +7,7 @@ export const OurClasses = ({ setSelectedPage }: TSetSelectedPage) => {
 	return (
 		<section
 			id="ourclasses"
-			className="w-full bg-terciary-700 py-16"
+			className="w-full bg-primary-700 py-16"
 		>
 			<motion.div onViewportEnter={() => setSelectedPage(ESelectedPage.OurClasses)}>
 				<motion.div
