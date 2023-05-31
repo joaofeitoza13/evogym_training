@@ -78,7 +78,7 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 		setSubmitStatus(status)
 		setTimeout(() => {
 			setShowModal(false)
-		}, 3000)
+		}, 5000)
 	}
 
 	const sendFormData = async (formData: TFormData): Promise<void> => {
@@ -201,7 +201,7 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 					>
 						<div className="w-full before:absolute before:-bottom-20 before:-right-20 before:z-[-1] md:before:content-evolveText">
 							<img
-								className="ml-30 -mt-6 w-full rounded-xl hover:opacity-50"
+								className="ml-30 -mt-6 w-full rounded-xl"
 								src={Yoga}
 								// src={Sprinting}
 								alt="contact-us-page-graphic"
