@@ -62,20 +62,21 @@ The main features are:
 ## Screenshots:
 
 ##### Web Layout
-![HomePage](https://github.com/joaofeitoza13/evogym_training/blob/main/src/assets/readme/HomePage.png)
+![HomePage](https://i.imgur.com/LNLAyQU.png)
 
-![Carousel](https://github.com/joaofeitoza13/evogym_training/blob/main/src/assets/readme/Carousel.png)
+![Carousel](https://i.imgur.com/sQvmOEu.png)
 
-![CarouselActive](https://github.com/joaofeitoza13/evogym_training/blob/main/src/assets/readme/CarouselActive.png)
+![CarouselActive](https://i.imgur.com/TzTBOjZ.png)
 
-![Form](https://github.com/joaofeitoza13/evogym_training/blob/main/src/assets/readme/Form.png)
+![Form](https://i.imgur.com/n8eXjDs.png)
 
 ##### Mobile Layout
-![MobileHomePage](https://github.com/joaofeitoza13/evogym_training/blob/main/src/assets/readme/MobileHomePage.png)
+![MobileHomePage](https://i.imgur.com/mJKz3iW.png)
 
-![ToggleSideBar](https://github.com/joaofeitoza13/evogym_training/blob/main/src/assets/readme/ToggleSideBar.png)
+![ToggleSideBar](https://i.imgur.com/4LxMtv8.png)
 
-![ToggleSideBar](https://github.com/joaofeitoza13/evogym_training/blob/main/src/assets/readme/EvoGymNav.gif)
+##### Navigation demo: (Kinda tricky to add the [gif](https://i.imgur.com/G7gVZky.gif))
+![Imgur](https://i.imgur.com/G7gVZky.gif)
 
 <br/>
 
