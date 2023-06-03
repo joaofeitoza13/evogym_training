@@ -115,7 +115,7 @@ export const NavBar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) =>
 			</motion.div>
 			<AnimatePresence>
 				<motion.div
-					id="modal"
+					id="toast"
 					className="fixed top-20 z-30 -mt-4"
 					initial={{ y: '-4rem' }}
 					animate={{ y: 0 }}

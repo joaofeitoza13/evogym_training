@@ -2,10 +2,11 @@ import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 
 type Props = {
+	container: string
 	children: React.ReactNode
 }
 
-export const Modal = ({ children }: Props) => {
+export const Modal = ({ container, children }: Props) => {
 	const elRef = useRef<HTMLDivElement | null>(null)
 
 	if (!elRef.current) {
@@ -13,7 +14,7 @@ export const Modal = ({ children }: Props) => {
 	}
 
 	useEffect(() => {
-		const modalRoot = document.getElementById('modal')
+		const modalRoot = document.getElementById(container)
 		if (elRef.current) {
 			modalRoot?.appendChild(elRef.current)
 		}
@@ -22,7 +23,7 @@ export const Modal = ({ children }: Props) => {
 				modalRoot?.removeChild(elRef.current)
 			}
 		}
-	}, [])
+	}, [container])
 
 	if (elRef.current) {
 		return createPortal(<div>{children}</div>, elRef.current)
