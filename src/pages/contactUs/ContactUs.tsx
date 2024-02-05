@@ -24,6 +24,7 @@ const motionVariant = {
 	visible: { opacity: 1, y: 0 },
 }
 
+
 const formSchema = zod.object({
 	name: zod
 		.string()
@@ -57,7 +58,7 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 		getValues,
 		handleSubmit,
 		formState: {
-			errors: { message },
+			errors,
 		},
 	} = useForm<TFormData>({
 		resolver: zodResolver(formSchema),
@@ -163,7 +164,7 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 								/>
 								<div className={floatingPlaceholder}>Name</div>
 							</div>
-							<ErrorMessage error={message?.message || ''} />
+							<ErrorMessage error={errors.name?.message || ''} />
 							<div className="input">
 								<input
 									className={inputStyles}
@@ -172,7 +173,7 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 								/>
 								<div className={floatingPlaceholder}>Email</div>
 							</div>
-							<ErrorMessage error={message?.message || ''} />
+							<ErrorMessage error={errors.email?.message || ''} />
 							<div className="input">
 								<textarea
 									className={inputStyles}
@@ -182,7 +183,7 @@ export const ContactUs = ({ setSelectedPage }: TSetSelectedPage) => {
 								/>
 								<div className={msgFloatingPlaceholder}>Message</div>
 							</div>
-							<ErrorMessage error={message?.message || ''} />
+							<ErrorMessage error={errors.message?.message || ''} />
 							<button
 								className="mt-5 rounded-lg bg-secondary-400 px-16 py-3 text-lg tracking-widest text-black transition duration-500 active:translate-y-1 active:bg-primary-400"
 								type="submit"
